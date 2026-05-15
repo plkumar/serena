@@ -9,10 +9,8 @@ import sys
 import threading
 
 from solidlsp.ls import (
-    DocumentSymbols,
     LanguageServerDependencyProvider,
     LanguageServerDependencyProviderSinglePath,
-    LSPFileBuffer,
     SolidLanguageServer,
 )
 from solidlsp.ls_config import LanguageServerConfig
