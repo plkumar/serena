@@ -261,6 +261,7 @@ class Language(str, Enum):
             self.HTML,
             self.SCSS,
             self.ANGULAR,
+            self.VB6,
         }
 
     def is_programming_language(self) -> bool:
@@ -513,7 +514,7 @@ class Language(str, Enum):
                         path_patterns.append(f".{prefix}ts{postfix}")
                 return FilenameMatcher(*path_patterns)
             case self.VB6:
-                return FilenameMatcher(".bas", ".cls", ".frm", ".ctl")
+                return FilenameMatcher(".bas", ".cls", ".frm", ".ctl", case_sensitive=False)
             case _:
                 raise ValueError(f"Unhandled language: {self}")
 

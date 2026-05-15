@@ -6,7 +6,6 @@ import logging
 import os
 import pathlib
 import sys
-import threading
 
 from solidlsp.ls import (
     LanguageServerDependencyProvider,
@@ -36,7 +35,6 @@ class VB6LanguageServer(SolidLanguageServer):
             "vb6",
             solidlsp_settings,
         )
-        self.server_ready = threading.Event()
 
     def _create_dependency_provider(self) -> LanguageServerDependencyProvider:
         return self.DependencyProvider(self._custom_settings, self._ls_resources_dir)
@@ -104,5 +102,4 @@ class VB6LanguageServer(SolidLanguageServer):
         )
 
         self.server.notify.initialized({})
-        self.server_ready.set()
         log.info("VB6 language server ready")
