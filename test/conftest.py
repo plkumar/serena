@@ -272,6 +272,7 @@ _LANGUAGE_PYTEST_MARKERS: dict[Language, list[MarkDecorator | Mark]] = {
     Language.ANGULAR: [pytest.mark.angular],
     Language.HTML: [pytest.mark.html],
     Language.SCSS: [pytest.mark.scss],
+    Language.VB6: [pytest.mark.vb6],
 }
 
 
