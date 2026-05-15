@@ -222,6 +222,11 @@ class Language(str, Enum):
     project.yml — Angular LS supersedes both for Angular projects.
     Must be explicitly specified in project.yml.
     """
+    VB6 = "vb6"
+    """VB6 language server using vb6_parser.
+    Supports .bas (standard modules), .cls (class modules), .frm (forms), and .ctl (user controls).
+    Requires vb6_parser to be installed (pip install vb6-parser).
+    """
 
     @classmethod
     def iter_all(cls, include_experimental: bool = False, include_non_programming_languages: bool = True) -> Iterable[Self]:
@@ -507,6 +512,8 @@ class Language(str, Enum):
                     for postfix in ["x", ""]:
                         path_patterns.append(f".{prefix}ts{postfix}")
                 return FilenameMatcher(*path_patterns)
+            case self.VB6:
+                return FilenameMatcher(".bas", ".cls", ".frm", ".ctl")
             case _:
                 raise ValueError(f"Unhandled language: {self}")
 
@@ -766,6 +773,10 @@ class Language(str, Enum):
                 from solidlsp.language_servers.angular_language_server import AngularLanguageServer
 
                 return AngularLanguageServer
+            case self.VB6:
+                from solidlsp.language_servers.vb6_language_server import VB6LanguageServer
+
+                return VB6LanguageServer
             case _:
                 raise ValueError(f"Unhandled language: {self}")
 
